@@ -1,5 +1,5 @@
-# SimpleVowelXfrFuncScriptV4.praat
-# Author T.M Nearey Oct 30 2008- Feb 12 2013
+# SimpleVowelXfrFuncScript.praat
+# Author T.M. Nearey Oct 30 2008- Feb 12 2013
 # Creates 5-formant vowels.
 # Displays preemphasized spectrum with LPC in drawing window.
 # Bandwidths set at larger of 60 Hz or 6% of formant frequency.
