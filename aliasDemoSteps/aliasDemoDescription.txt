@@ -1,0 +1,40 @@
+AliasDemo.praat  
+AliasDemo.praat is a praat script that
+generates a series of tone pips, each of
+which is a segment of a sinusoid.
+
+There are 4 menu items that can be edited
+
+StepHz :  (default 1000 Hz) -- the frequency of the first pip
+ and the separation between each pair of pips.
+
+StepMs:   (default 100 ms) 
+	 -- the duration of each pip
+
+durSec: (default 1 s)  
+	-- the maximum total duration of the whole tone sequence.
+
+SamplingFreq:   (default 20000)
+	  sampling rate in Hz.
+
+With the default settings:
+you hear a set of tone pips of increasing frequency
+starting at  1000 Hz and going to 10,000 Hz.
+
+Exercises:
+1) Leave everything EXCEPT the sampling frequency
+at their default values.
+Change the SamplingFreq something less
+than 20000 Hz but at 10000 Hz or above,
+you'll hear tone go up, then down. 
+
+2) Repeat, but set SamplingFreq to a value
+lower than 10000 Hz.
+You'll hear it go up then down then up
+and if SamplingFreq  is low enough, down again..
+
+Note: The program sets
+Spectrum:Spectrogram settings...:Window length (s)
+ to 0.020, so the (narrow-band) spectrogram
+ should show a clear picture of the sine pips you produced
+and should correspond to the up-down pattern of what you heard.

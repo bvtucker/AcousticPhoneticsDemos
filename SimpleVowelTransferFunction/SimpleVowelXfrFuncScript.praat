@@ -7,22 +7,34 @@
 # Default frequencies work best with sampling rate (fs) of 10000 Hz
 # Version 4.0 with extra note about 'digital version'
 # Version 5.0 Updated filter was created and added plotting of the source and the filter in addition to the output
-form supply_arguments 
-	positive fs  10000
-	comment This is digital synthesis. The transfer functions are a little
-      comment  different than analog versions. Higher pole correction is implicit.
-	comment Relative effects of varying formant frequencies within reason are very
-	comment similar to analog world.
-	comment Bandwiths are set at 6 percent of formant frequencies or min of 60 Hz
-	positive vowelDuration  0.500
-	positive windowDuration 0.0500
-	positive f0 100
-	positive f1 500
-	positive f2 1500
-	positive f3 2500
-	positive f4 3500
-	positive f5 4500
-endform 
+
+repeat
+fs=10000;
+vowelDuration=0.500
+windowDuration=0.0500
+f0=100
+f1=500
+f2=1500
+f3=2500
+f4=3500
+f5=4500
+# the revised form
+beginPause("Input information")
+	comment ("What is the sampling frequency (fs)?")
+	real("fs",fs);
+	comment ("This is digital synthesis. The transfer functions are a little different than analog versions.")
+	comment ("Higher pole correction is implicit. Relative effects of varying formant frequencies within")
+	comment ("reason are very similar to analog world.")
+	comment ("Bandwiths are set at 6 percent of formant frequencies or min of 60 Hz")
+	real("vowelDuration",vowelDuration);
+	real("windowDuration",windowDuration);
+	real("f0",f0);
+	real("f1",f1);
+	real("f2",f2);
+	real("f3",f3);
+	real("f4",f4);
+	real("f5",f5);
+clicked = endPause ("Continue", 1)
 
 b1 = max(60, 0.06*f1)
 b2 = max(60, 0.06*f2)
@@ -46,7 +58,7 @@ Play
 
 # Plotting the source
 Erase all
-Select outer viewport: 0, 8, 0, 3.5
+Select outer viewport: 0, 8, 0, 3
 select Sound source
 To Spectrum: "yes"
 Blue
@@ -70,7 +82,7 @@ for i from 1 to 5
 endfor
 
 select FormantGrid FPattern
-Select outer viewport: 0, 8, 3.5, 6
+Select outer viewport: 0, 8, 2.5, 5.5
 To Formant: 0.01, 0.1
 To LPC: 16000
 To Spectrum (slice): 0, 20, 0, 50
@@ -93,7 +105,7 @@ select Sound source_filtVowel_preemp
 To Spectrum... yes
 
 
-Select outer viewport: 0, 8, 6, 9.5
+Select outer viewport: 0, 8, 5, 9
 Black
 
 
@@ -104,8 +116,12 @@ Draw... 'lowFreq'  'highFreq' 0 80 yes
 #Preemph chosen for better envelope fit at high frequencies
 
 Marks left every... 1 10 no yes yes
+Select outer viewport: 0, 8, 0, 9.5
 
-pauseScript: "Click to clear the pictures then run again"
+beginPause("Examine last signal")
+clickedMore=endPause("Again", "Done",1)
+more=clickedMore==1
+until more==0
+#pauseScript: "Click to clear the pictures then run again"
 select all
 Remove
-
